@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BananaCrateHighlight : MonoBehaviour
+{
+    [SerializeField]
+    private BananaCrate bananaCrate;
+
+    [SerializeField]
+    private GameObject highlightedBananaCrate;
+
+    private void Start()
+    {
+        Player.Instance.OnEnterInteractRange += InstanceOnEnterInteractRange;
+    }
+
+    private void InstanceOnEnterInteractRange(object sender, OnEnterInteractRangeArgs e)
+    {
+        //Debug.Log(e.nearbyObject);
+        //Debug.Log(this.bananaCrate.transform);
+        if (e.nearbyObject && e.nearbyObject.position.Equals(this.bananaCrate.transform.position))
+        {
+            Debug.Log("setting highlight");
+            this.HighlightCrate();
+        }
+        else
+        {
+            this.UnhighlightCrate();
+        }
+    }
+
+    private void HighlightCrate()
+    {
+        this.highlightedBananaCrate.SetActive(true);
+    }
+
+    private void UnhighlightCrate()
+    {
+        this.highlightedBananaCrate.SetActive(false);
+    }
+}
