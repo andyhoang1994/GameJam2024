@@ -1,17 +1,16 @@
 using UnityEngine;
 
-public class BananaCrate : MonoBehaviour
+public class BananaCrate : BaseObject
 {
-    [SerializeField]
-    private HoldableObjectSO holdableObjectSO;
-
-    [SerializeField]
-    private Transform spawnPoint;
-
-    public void Interact()
+    public override void ActionOne(Player player)
     {
-        Debug.Log("Interact");
-        Transform holdableObject = Instantiate(holdableObjectSO.Prefab, spawnPoint);
+        Debug.Log("ActionOne");
+        Transform holdableObject = Instantiate(HoldableObjectSO.Prefab, this.SpawnPoint);
         holdableObject.localPosition = Vector3.zero;
+    }
+
+    public void ActionTwo()
+    {
+
     }
 }

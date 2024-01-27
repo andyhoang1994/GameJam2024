@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     public Vector3 LastInteractDirection { get; private set; }
 
-    public Transform NearbyObject { get; private set; }
+    public BaseObject NearbyObject { get; private set; }
 
     public event EventHandler<OnEnterInteractRangeArgs> OnEnterInteractRange;
 
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
             Debug.Log(bananaCrate);
             if (bananaCrate != null)
             {
-                bananaCrate.Interact();
+                bananaCrate.ActionOne(this);
             }
         }
     }
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         return !Physics.BoxCast(transform.position, halfExtends, moveDirection, Quaternion.identity, this.collisionDistance);
     }
 
-    private void SetNearbyObject(Transform gameObject)
+    private void SetNearbyObject(BaseObject gameObject)
     {
         this.NearbyObject = gameObject;
         this.OnEnterInteractRange?.Invoke(this, new OnEnterInteractRangeArgs { nearbyObject = gameObject });
@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
         Vector3 halfExtends = new Vector3(this.playerWidth, this.playerHeight, this.playerDepth) / 2;
         if (Physics.BoxCast(transform.position, halfExtends, this.LastInteractDirection, out RaycastHit raycastHit, Quaternion.identity, this.interactDistance))
         {
-            if (raycastHit.transform.TryGetComponent(out Transform gameObject))
+            if (raycastHit.transform.TryGetComponent(out BaseObject gameObject))
             {
                 if (gameObject != this.NearbyObject)
                 {

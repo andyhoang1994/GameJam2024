@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BananaCrateHighlight : MonoBehaviour
 {
     [SerializeField]
-    private BananaCrate bananaCrate;
+    private BaseObject bananaCrate;
 
     [SerializeField]
     private GameObject highlightedBananaCrate;
@@ -19,9 +17,10 @@ public class BananaCrateHighlight : MonoBehaviour
     {
         //Debug.Log(e.nearbyObject);
         //Debug.Log(this.bananaCrate.transform);
-        if (e.nearbyObject && e.nearbyObject.position.Equals(this.bananaCrate.transform.position))
+        if (e.nearbyObject && e.nearbyObject.position().Equals(this.bananaCrate.transform.position))
         {
             Debug.Log("setting highlight");
+            Debug.Log(highlightedBananaCrate);
             this.HighlightCrate();
         }
         else
