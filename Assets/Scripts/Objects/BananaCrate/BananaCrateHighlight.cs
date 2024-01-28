@@ -15,8 +15,6 @@ public class BananaCrateHighlight : MonoBehaviour
 
     private void InstanceOnEnterInteractRange(object sender, OnEnterInteractRangeArgs e)
     {
-        //Debug.Log(e.nearbyObject);
-        //Debug.Log(this.bananaCrate.transform);
         if (e.nearbyObject && e.nearbyObject.position().Equals(this.bananaCrate.transform.position))
         {
             Debug.Log("setting highlight");

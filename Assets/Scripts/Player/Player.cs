@@ -31,11 +31,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float interactDistance = 5f;
 
+    [SerializeField]
+    private Transform heldObjectPoint;
+
     public bool IsWalking { get; private set; }
 
     public Vector3 LastInteractDirection { get; private set; }
 
     public BaseObject NearbyObject { get; private set; }
+
+    public Transform HeldObject { get; set; }
 
     public event EventHandler<OnEnterInteractRangeArgs> OnEnterInteractRange;
 
@@ -154,13 +159,16 @@ public class Player : MonoBehaviour
             transform.position += moveDirection * moveDistance;
         }
 
+        Vector3 heldObjectPosition = this.HeldObjectPoint.localPosition;
         if (moveDirection.x < 0f)
         {
-            this.sprite.flipX = true;
+            this.sprite.flipX = false;
+            this.HeldObjectPoint.SetLocalPositionAndRotation(new Vector3(-Math.Abs(heldObjectPosition.x), heldObjectPosition.y, heldObjectPosition.z), Quaternion.AngleAxis(180, Vector3.up));
         }
         else if (moveDirection.x > 0f)
         {
-            this.sprite.flipX = false;
+            this.sprite.flipX = true;
+            this.HeldObjectPoint.SetLocalPositionAndRotation(new Vector3(Math.Abs(heldObjectPosition.x), heldObjectPosition.y, heldObjectPosition.z), Quaternion.identity);
         }
     }
 
@@ -168,5 +176,18 @@ public class Player : MonoBehaviour
     {
         this.HandleMovement();
         this.HandleInteractions();
+    }
+
+    public Transform HeldObjectPoint { get { return this.heldObjectPoint; } }
+
+    public void ClearHeldObject()
+    {
+        Destroy(this.HeldObject.gameObject);
+        this.HeldObject = null;
+    }
+
+    public bool HasHeldObject()
+    {
+        return this.HeldObject != null;
     }
 }

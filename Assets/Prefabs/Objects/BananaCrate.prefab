@@ -385,7 +385,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 148874404416443809}
-  holdableObjectSO: {fileID: 11400000, guid: 274ece9c38b26a34db623e67890ba3d5, type: 2}
+  holdableObject: {fileID: -8219128679940640577, guid: 4077ac651e46cb3478d675de5e3dcc3e,
+    type: 3}
 --- !u!65 &971308285341987740
 BoxCollider:
   m_ObjectHideFlags: 0

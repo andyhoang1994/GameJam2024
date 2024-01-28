@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8693880767589551386}
+  - component: {fileID: -8219128679940640577}
   m_Layer: 0
   m_Name: Banana
   m_TagString: Untagged
@@ -116,3 +117,16 @@ Transform:
   - {fileID: 18322305841953605}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8219128679940640577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693376586719946466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d251d4d535f29df4f93ddb4219079bf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdableObjectSO: {fileID: 11400000, guid: 274ece9c38b26a34db623e67890ba3d5, type: 2}

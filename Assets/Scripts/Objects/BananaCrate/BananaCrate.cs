@@ -4,9 +4,17 @@ public class BananaCrate : BaseObject
 {
     public override void ActionOne(Player player)
     {
-        Debug.Log("ActionOne");
-        Transform holdableObject = Instantiate(HoldableObjectSO.Prefab, this.SpawnPoint);
-        holdableObject.localPosition = Vector3.zero;
+        if (!player.HasHeldObject())
+        {
+
+            Transform holdableObjectTransform = Instantiate(HoldableObject.HoldableObjectSO.Prefab, player.HeldObjectPoint);
+
+            player.HeldObject = holdableObjectTransform;
+        }
+        else
+        {
+            player.ClearHeldObject();
+        }
     }
 
     public void ActionTwo()

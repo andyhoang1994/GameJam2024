@@ -6,7 +6,7 @@ public class BaseObject : MonoBehaviour
     private Transform spawnPoint;
 
     [SerializeField]
-    private HoldableObjectSO holdableObjectSO;
+    private HoldableObject holdableObject;
 
     public virtual void ActionOne(Player player)
     {
@@ -18,7 +18,7 @@ public class BaseObject : MonoBehaviour
         Debug.LogError("BaseObject.InteractAlternate();");
     }
 
-    public HoldableObjectSO HoldableObjectSO { get { return this.holdableObjectSO; } set { this.holdableObjectSO = value; } }
+    public HoldableObject HoldableObject { get { return this.holdableObject; } set { this.holdableObject = value; } }
 
     public Transform SpawnPoint { get { return this.spawnPoint; } }
 
