@@ -6,6 +6,19 @@ public class Employee : MonoBehaviour
     [SerializeField]
     private SpriteRenderer sprite;
 
+    [SerializeField]
+    private Transform[] moodSprites;
+
+    [Header("Properties")]
+    [SerializeField]
+    private float height = 1.4f;
+
+    [SerializeField]
+    private float width = 0.7f;
+
+    [SerializeField]
+    private float depth = 1f;
+
     [Header("Attributes")]
     [SerializeField]
     private float moveSpeed = 2f;
@@ -17,22 +30,13 @@ public class Employee : MonoBehaviour
     private int strength = 1;
 
     [SerializeField]
-    private int maxStrength = 3;
-
-    [SerializeField]
     private float mood = 50f;
 
     [SerializeField]
     private float maxMood = 100f;
 
-    [SerializeField]
-    private float height = 1.4f;
-
-    [SerializeField]
-    private float width = 0.7f;
-
-    [SerializeField]
-    private float depth = 0.3f;
+    [Header("Decrease rate")]
+    private float moodDecreaseRate = 2f;
 
     [SerializeField]
     private HoldableObject like;
@@ -48,11 +52,14 @@ public class Employee : MonoBehaviour
     private Transform[] wayPoints;
 
     private int WayPointIndex { get; set; } = 0;
-    private float DistanceToWaypoint { get; set; }
 
     public Vector3 MoveDirection { get; private set; }
 
     public bool IsWalking { get; private set; }
+
+    public float Mood { get { return this.mood; } set { this.mood = value; } }
+
+    public int Strength { get { return this.strength; } set { this.strength = value; } }
 
     private bool GetCanMove(Vector3 moveDirection)
     {
@@ -81,6 +88,56 @@ public class Employee : MonoBehaviour
         }
     }
 
+    private Transform GetMoodSprite(Mood mood)
+    {
+        return this.moodSprites[(int)mood];
+    }
+
+    private void UpdateMoodSprite()
+    {
+        switch (this.Mood)
+        {
+            case >= 70:
+                this.GetMoodSprite(global::Mood.Okay).gameObject.SetActive(false);
+                this.GetMoodSprite(global::Mood.Bad).gameObject.SetActive(false);
+                this.GetMoodSprite(global::Mood.Good).gameObject.SetActive(true);
+                break;
+            case >= 40 and < 70:
+                this.GetMoodSprite(global::Mood.Good).gameObject.SetActive(false);
+                this.GetMoodSprite(global::Mood.Bad).gameObject.SetActive(false);
+                this.GetMoodSprite(global::Mood.Okay).gameObject.SetActive(true);
+                break;
+            case >= 0 and < 40:
+                this.GetMoodSprite(global::Mood.Good).gameObject.SetActive(false);
+                this.GetMoodSprite(global::Mood.Okay).gameObject.SetActive(false);
+                this.GetMoodSprite(global::Mood.Bad).gameObject.SetActive(true);
+                break;
+        }
+    }
+    private void UpdateMood()
+    {
+        if (this.Mood > 100)
+        {
+            this.Mood = 100;
+        }
+        this.Mood -= Time.deltaTime * this.moodDecreaseRate;
+    }
+
+    private void UpdateStrength()
+    {
+        switch (this.Mood)
+        {
+            case >= 70:
+                this.Strength = 3;
+                break;
+            case >= 40 and < 70:
+                this.Strength = 2;
+                break;
+            case >= 0 and < 40:
+                this.Strength = 1;
+                break;
+        }
+    }
 
     private void HandleEnterWaypoint()
     {
@@ -91,7 +148,6 @@ public class Employee : MonoBehaviour
             this.MoveToNextWaypoint();
         }
     }
-
 
     private void HandleMovement()
     {
@@ -149,6 +205,9 @@ public class Employee : MonoBehaviour
     {
         this.HandleMovement();
         this.HandleEnterWaypoint();
+        this.UpdateMood();
+        this.UpdateMoodSprite();
+        this.UpdateStrength();
     }
 
     public void ActionOne(Player player)
