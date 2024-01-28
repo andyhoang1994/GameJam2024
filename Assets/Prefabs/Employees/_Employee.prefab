@@ -385,22 +385,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 4011998589264030449}
   moodSprites:
-  - {fileID: 6193008545071560235}
-  - {fileID: 4607987325324305945}
-  - {fileID: 8788535580342039256}
+  - {fileID: 6841670592654406137}
+  - {fileID: 8642016306124499510}
+  - {fileID: 2102922791697181841}
   height: 1.4
   width: 0.7
   depth: 0.3
   moveSpeed: 2
   maxMoveSpeed: 6
   strength: 1
-  maxStrength: 3
   mood: 50
   maxMood: 100
   like: {fileID: 0}
   dislike: {fileID: 0}
   collisionDistance: 0.25
-  wayPoints: []
+  wayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!65 &763503314866655053
 BoxCollider:
   m_ObjectHideFlags: 0

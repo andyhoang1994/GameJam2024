@@ -17,8 +17,6 @@ public class BananaCrateHighlight : MonoBehaviour
     {
         if (e.nearbyObject && e.nearbyObject.position().Equals(this.bananaCrate.transform.position))
         {
-            Debug.Log("setting highlight");
-            Debug.Log(highlightedBananaCrate);
             this.HighlightCrate();
         }
         else

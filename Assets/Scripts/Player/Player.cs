@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     [Header("Player attributes")]
     [SerializeField]
-    private float moveSpeed = 7f;
+    private float moveSpeed = 5f;
 
     [SerializeField]
     private float height = 1.4f;
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     private float collisionDistance = 0.25f;
 
     [SerializeField]
-    private float interactDistance = 5f;
+    private float interactDistance = 4f;
 
     public bool IsWalking { get; private set; }
 
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
 
     private bool GetCanMove(Vector3 moveDirection)
     {
-        Vector3 halfExtends = new Vector3(this.width, this.height, this.depth) / 2;
+        Vector3 halfExtends = new Vector3(this.width, this.height / 2, this.depth);
         return !Physics.BoxCast(transform.position, halfExtends, moveDirection, Quaternion.identity, this.collisionDistance);
     }
 

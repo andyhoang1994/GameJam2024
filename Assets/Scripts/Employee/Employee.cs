@@ -51,6 +51,8 @@ public class Employee : MonoBehaviour
     [SerializeField]
     private Transform[] wayPoints;
 
+    private bool IsReturning { get; set; } = false;
+
     private int WayPointIndex { get; set; } = 0;
 
     public Vector3 MoveDirection { get; private set; }
@@ -60,6 +62,23 @@ public class Employee : MonoBehaviour
     public float Mood { get { return this.mood; } set { this.mood = value; } }
 
     public int Strength { get { return this.strength; } set { this.strength = value; } }
+
+    public HoldableObject Like { get { return this.like; } }
+
+    public HoldableObject Dislike { get { return this.dislike; } }
+
+    private void InstanceOnEnterWaypointRange(object sender, OnEnterWaypointRangeArgs e)
+    {
+        Debug.Log("Entered destination waypoint");
+        Debug.Log($"e.waypoint.position {e.waypoint}");
+        Debug.Log($"this.GetWayPoint().transform.position {this.GetWayPoint().transform.position}");
+        if (e.waypoint && e.waypoint.transform.position.Equals(this.GetWayPoint().transform.position))
+        {
+            Debug.Log("Waypoint match");
+            int money = 30;
+            GameState.Instance.AddMoney(money);
+        }
+    }
 
     private bool GetCanMove(Vector3 moveDirection)
     {
@@ -76,16 +95,20 @@ public class Employee : MonoBehaviour
 
     private void MoveToNextWaypoint()
     {
-        int newWayPointIndex = this.WayPointIndex + 1;
+        Debug.Log($"Current waypoint: {this.WayPointIndex} {this.IsReturning}");
+        if (this.WayPointIndex == this.WayPoints.Length - 1)
+        {
+            this.IsReturning = true;
+        }
+        else if (this.WayPointIndex == 0)
+        {
+            this.IsReturning = false;
+        }
 
-        if (newWayPointIndex >= this.WayPoints.Length)
-        {
-            this.WayPointIndex = 0;
-        }
-        else
-        {
-            this.WayPointIndex = newWayPointIndex;
-        }
+
+        int newWayPointIndex = this.WayPointIndex + (this.IsReturning ? -1 : 1);
+        Debug.Log($"New waypoint: {newWayPointIndex} {this.IsReturning}");
+        this.WayPointIndex = newWayPointIndex;
     }
 
     private Transform GetMoodSprite(Mood mood)
@@ -120,7 +143,15 @@ public class Employee : MonoBehaviour
         {
             this.Mood = 100;
         }
-        this.Mood -= Time.deltaTime * this.moodDecreaseRate;
+
+        if (this.Mood < 0)
+        {
+            this.Mood = 0;
+        }
+        else
+        {
+            this.Mood -= Time.deltaTime * this.moodDecreaseRate;
+        }
     }
 
     private void UpdateStrength()
@@ -141,9 +172,10 @@ public class Employee : MonoBehaviour
 
     private void HandleEnterWaypoint()
     {
-        float distance = Vector3.Distance(transform.position, this.GetWayPoint().position);
+        Vector3 waypointPosition = this.GetWayPoint().position;
+        float distance = Vector3.Distance(transform.position, waypointPosition);
 
-        if (distance < 1.7f)
+        if (distance < 1.5f)
         {
             this.MoveToNextWaypoint();
         }
@@ -196,8 +228,9 @@ public class Employee : MonoBehaviour
         }
     }
 
-    public void Start()
+    private void Start()
     {
+        DestinationWaypoint.Instance.OnEnterWaypointRange += InstanceOnEnterWaypointRange;
         this.WayPointIndex = 0;
     }
 
@@ -214,8 +247,24 @@ public class Employee : MonoBehaviour
     {
         if (player.HasHeldObject())
         {
+            Transform heldObject = player.HeldObject;
+            heldObject.TryGetComponent(out HoldableObject holdableObject);
+            string objectName = holdableObject.HoldableObjectSO.ObjectName;
+
+            if (this.Like.HoldableObjectSO.ObjectName == objectName)
+            {
+                this.Mood += 40f;
+            }
+            else if (this.Dislike.HoldableObjectSO.ObjectName == objectName)
+            {
+                this.Mood -= 10f;
+            }
+            else
+            {
+                this.Mood += 20f;
+            }
+
             player.ClearHeldObject();
-            this.mood += 10f;
         }
     }
 }

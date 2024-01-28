@@ -27,4 +27,8 @@ public class GameState : MonoBehaviour
     {
         Instance = this;
     }
+    public void AddMoney(int money)
+    {
+        this.CurrentMoney += money;
+    }
 }

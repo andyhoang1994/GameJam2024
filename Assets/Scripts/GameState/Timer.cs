@@ -4,7 +4,7 @@ public class Timer : MonoBehaviour
     public static Timer Instance { get; private set; }
 
     [SerializeField]
-    private float timePerLevel = 10f;
+    private float timePerLevel = 30f;
 
     public float TotalTime { get; private set; }
     public float TimeRemaining { get; private set; }
@@ -18,9 +18,6 @@ public class Timer : MonoBehaviour
         this.TotalTime = totalTime;
         this.TimeRemaining = totalTime;
         this.TimerIsRunning = true;
-        Debug.Log($"currentLevel {currentLevel}");
-        Debug.Log($"TotalTime {this.TotalTime}");
-        Debug.Log($"TimeRemaining {this.TimeRemaining}");
     }
     private void Awake()
     {
