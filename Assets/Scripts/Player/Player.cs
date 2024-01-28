@@ -12,33 +12,35 @@ public class Player : MonoBehaviour
     [SerializeField]
     private SpriteRenderer sprite;
 
+    [SerializeField]
+    private Transform heldObjectPoint;
+
     [Header("Player attributes")]
     [SerializeField]
     private float moveSpeed = 7f;
 
     [SerializeField]
-    private float playerHeight = 1.4f;
+    private float height = 1.4f;
 
     [SerializeField]
-    private float playerWidth = 0.7f;
+    private float width = 0.7f;
 
     [SerializeField]
-    private float playerDepth = 0.3f;
+    private float depth = 0.3f;
 
     [SerializeField]
-    private float collisionDistance = 0.24f;
+    private float collisionDistance = 0.25f;
 
     [SerializeField]
     private float interactDistance = 5f;
-
-    [SerializeField]
-    private Transform heldObjectPoint;
 
     public bool IsWalking { get; private set; }
 
     public Vector3 LastInteractDirection { get; private set; }
 
     public BaseObject NearbyObject { get; private set; }
+
+    public Employee NearbyEmployee { get; private set; }
 
     public Transform HeldObject { get; set; }
 
@@ -66,11 +68,14 @@ public class Player : MonoBehaviour
 
     private void GameInputOnActionOne(object sender, EventArgs e)
     {
-        Debug.Log(this.NearbyObject);
-        if (this.NearbyObject != null)
+        if (this.NearbyEmployee != null)
+        {
+            this.NearbyEmployee.ActionOne(this);
+        }
+        else if (this.NearbyObject != null)
         {
             this.NearbyObject.gameObject.TryGetComponent(out BananaCrate bananaCrate);
-            Debug.Log(bananaCrate);
+
             if (bananaCrate != null)
             {
                 bananaCrate.ActionOne(this);
@@ -80,7 +85,7 @@ public class Player : MonoBehaviour
 
     private bool GetCanMove(Vector3 moveDirection)
     {
-        Vector3 halfExtends = new Vector3(this.playerWidth, this.playerHeight, this.playerDepth) / 2;
+        Vector3 halfExtends = new Vector3(this.width, this.height, this.depth) / 2;
         return !Physics.BoxCast(transform.position, halfExtends, moveDirection, Quaternion.identity, this.collisionDistance);
     }
 
@@ -100,25 +105,35 @@ public class Player : MonoBehaviour
             this.LastInteractDirection = moveDirection;
         }
 
-        Vector3 halfExtends = new Vector3(this.playerWidth, this.playerHeight, this.playerDepth) / 2;
+        Vector3 halfExtends = new Vector3(this.width, this.height, this.depth) / 2;
         if (Physics.BoxCast(transform.position, halfExtends, this.LastInteractDirection, out RaycastHit raycastHit, Quaternion.identity, this.interactDistance))
         {
-            if (raycastHit.transform.TryGetComponent(out BaseObject gameObject))
+            if (raycastHit.transform.TryGetComponent(out Employee employee))
             {
+                if (employee != this.NearbyEmployee)
+                {
+                    this.NearbyEmployee = employee;
+                }
+            }
+            else if (raycastHit.transform.TryGetComponent(out BaseObject gameObject))
+            {
+                this.NearbyEmployee = null;
+
                 if (gameObject != this.NearbyObject)
                 {
-                    Debug.Log("Setting nearby game object");
                     this.SetNearbyObject(gameObject);
                 }
             }
             else
             {
                 this.SetNearbyObject(null);
+                this.NearbyEmployee = null;
             }
         }
         else
         {
             this.SetNearbyObject(null);
+            this.NearbyEmployee = null;
         }
     }
 
