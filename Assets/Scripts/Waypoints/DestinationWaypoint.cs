@@ -32,28 +32,4 @@ public class DestinationWaypoint : MonoBehaviour
             this.OnEnterWaypointRange?.Invoke(this, new OnEnterWaypointRangeArgs { waypoint = this.Waypoint });
         }
     }
-
-    private void HandleNearbyObjects()
-    {
-        if (Physics.BoxCast(transform.position, new Vector3(3f, 3f, 3f), Vector3.one, out RaycastHit raycastHit, Quaternion.identity, 3f))
-        {
-            if (raycastHit.transform.TryGetComponent(out Employee employee))
-            {
-                if (this.Employee != employee)
-                {
-                    this.OnEnterWaypointRange?.Invoke(this, new OnEnterWaypointRangeArgs { waypoint = this.Waypoint });
-                    this.Employee = employee.gameObject;
-                }
-            }
-            else
-            {
-                this.Employee = null;
-            }
-        }
-    }
-
-    private void Update()
-    {
-        HandleNearbyObjects();
-    }
 }
