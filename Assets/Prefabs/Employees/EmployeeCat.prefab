@@ -82,10 +82,64 @@ PrefabInstance:
     - target: {fileID: 8154301871700037098, guid: 765f469d9a2ec8b48b23c63c91c6dae8,
         type: 3}
       propertyPath: m_Name
-      value: EmployeeCat2
+      value: EmployeeCat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8154301871700037098, guid: 765f469d9a2ec8b48b23c63c91c6dae8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5993046351823437132}
+    - targetCorrespondingSourceObject: {fileID: 2585688296596729536, guid: 765f469d9a2ec8b48b23c63c91c6dae8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3240692913407481112}
   m_SourcePrefab: {fileID: 100100000, guid: 765f469d9a2ec8b48b23c63c91c6dae8, type: 3}
+--- !u!1 &318024463900115288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2585688296596729536, guid: 765f469d9a2ec8b48b23c63c91c6dae8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2849631080970907544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3240692913407481112
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318024463900115288}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2eaf47866ee7a41bb930e3072b5ac7d5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6242563061217305202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8154301871700037098, guid: 765f469d9a2ec8b48b23c63c91c6dae8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2849631080970907544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5993046351823437132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242563061217305202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9711a5b283c24949a5718b6758f2719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  employee: {fileID: 0}

@@ -24,9 +24,17 @@ public class DestinationWaypoint : MonoBehaviour
         Instance = this;
     }
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.TryGetComponent(out Employee employee))
+        {
+            Debug.Log("On trigger enter");
+            this.OnEnterWaypointRange?.Invoke(this, new OnEnterWaypointRangeArgs { waypoint = this.Waypoint });
+        }
+    }
+
     private void HandleNearbyObjects()
     {
-        Debug.Log(this.Waypoint);
         if (Physics.BoxCast(transform.position, new Vector3(3f, 3f, 3f), Vector3.one, out RaycastHit raycastHit, Quaternion.identity, 3f))
         {
             if (raycastHit.transform.TryGetComponent(out Employee employee))

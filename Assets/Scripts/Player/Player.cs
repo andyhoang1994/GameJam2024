@@ -5,6 +5,8 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
 
+    private const int DEFAULT_LAYER = 0;
+
     [Header("Assets")]
     [SerializeField]
     private GameInput gameInput;

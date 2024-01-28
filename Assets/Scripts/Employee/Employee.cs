@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Employee : MonoBehaviour
 {
+    private const int DEFAULT_LAYER = 0;
+
     [Header("Assets")]
     [SerializeField]
     private SpriteRenderer sprite;
@@ -69,13 +71,10 @@ public class Employee : MonoBehaviour
 
     private void InstanceOnEnterWaypointRange(object sender, OnEnterWaypointRangeArgs e)
     {
-        Debug.Log("Entered destination waypoint");
-        Debug.Log($"e.waypoint.position {e.waypoint}");
-        Debug.Log($"this.GetWayPoint().transform.position {this.GetWayPoint().transform.position}");
         if (e.waypoint && e.waypoint.transform.position.Equals(this.GetWayPoint().transform.position))
         {
             Debug.Log("Waypoint match");
-            int money = 30;
+            int money = this.Strength;
             GameState.Instance.AddMoney(money);
         }
     }
@@ -95,7 +94,6 @@ public class Employee : MonoBehaviour
 
     private void MoveToNextWaypoint()
     {
-        Debug.Log($"Current waypoint: {this.WayPointIndex} {this.IsReturning}");
         if (this.WayPointIndex == this.WayPoints.Length - 1)
         {
             this.IsReturning = true;
@@ -107,7 +105,6 @@ public class Employee : MonoBehaviour
 
 
         int newWayPointIndex = this.WayPointIndex + (this.IsReturning ? -1 : 1);
-        Debug.Log($"New waypoint: {newWayPointIndex} {this.IsReturning}");
         this.WayPointIndex = newWayPointIndex;
     }
 
@@ -191,8 +188,6 @@ public class Employee : MonoBehaviour
         float moveDistance = this.moveSpeed * Time.deltaTime;
         bool canMove = this.GetCanMove(this.MoveDirection);
 
-        this.IsWalking = this.MoveDirection != Vector3.zero;
-
         if (canMove is not true)
         {
             Vector3 moveDirectionX = new Vector3(this.MoveDirection.x, 0, 0).normalized;
@@ -213,10 +208,13 @@ public class Employee : MonoBehaviour
                 }
             }
         }
+
         if (canMove)
         {
             transform.position += this.MoveDirection * moveDistance;
         }
+
+        this.IsWalking = canMove;
 
         if (this.MoveDirection.x < 0f)
         {
