@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Employee : MonoBehaviour
 {
-    private const int DEFAULT_LAYER = 0;
 
     [Header("Assets")]
     [SerializeField]
@@ -73,7 +72,6 @@ public class Employee : MonoBehaviour
     {
         if (e.waypoint && e.waypoint.transform.position.Equals(this.GetWayPoint().transform.position))
         {
-            Debug.Log("Waypoint match");
             int money = this.Strength;
             GameState.Instance.AddMoney(money);
         }
@@ -187,27 +185,6 @@ public class Employee : MonoBehaviour
 
         float moveDistance = this.moveSpeed * Time.deltaTime;
         bool canMove = this.GetCanMove(this.MoveDirection);
-
-        if (canMove is not true)
-        {
-            Vector3 moveDirectionX = new Vector3(this.MoveDirection.x, 0, 0).normalized;
-            canMove = this.GetCanMove(moveDirectionX);
-
-            if (canMove is true)
-            {
-                this.MoveDirection = moveDirectionX;
-            }
-            else
-            {
-                Vector3 moveDirectionZ = new Vector3(0, 0, this.MoveDirection.z).normalized;
-                canMove = this.GetCanMove(moveDirectionZ);
-
-                if (canMove is true)
-                {
-                    this.MoveDirection = moveDirectionZ;
-                }
-            }
-        }
 
         if (canMove)
         {

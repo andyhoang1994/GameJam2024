@@ -5,8 +5,6 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
 
-    private const int DEFAULT_LAYER = 0;
-
     [Header("Assets")]
     [SerializeField]
     private GameInput gameInput;
@@ -76,12 +74,7 @@ public class Player : MonoBehaviour
         }
         else if (this.NearbyObject != null)
         {
-            this.NearbyObject.gameObject.TryGetComponent(out BananaCrate bananaCrate);
-
-            if (bananaCrate != null)
-            {
-                bananaCrate.ActionOne(this);
-            }
+            this.NearbyObject.ActionOne(this);
         }
     }
 

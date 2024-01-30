@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1608562104375803823, guid: 9cceeec787ed96847a5b069b9bcd2d4e,
         type: 3}
       propertyPath: m_Name
-      value: _InteractableObject
+      value: PizzaBox
       objectReference: {fileID: 0}
     - target: {fileID: 3950435309147775802, guid: 9cceeec787ed96847a5b069b9bcd2d4e,
         type: 3}
@@ -66,5 +66,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1608562104375803823, guid: 9cceeec787ed96847a5b069b9bcd2d4e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3832860214645049659}
+    - targetCorrespondingSourceObject: {fileID: 1608562104375803823, guid: 9cceeec787ed96847a5b069b9bcd2d4e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8166433614058873951}
   m_SourcePrefab: {fileID: 100100000, guid: 9cceeec787ed96847a5b069b9bcd2d4e, type: 3}
+--- !u!1 &5995642237052432497 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1608562104375803823, guid: 9cceeec787ed96847a5b069b9bcd2d4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5000700307046387678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3832860214645049659
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5995642237052432497}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8166433614058873951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5995642237052432497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f300ae355a53da249a248d59b95ca93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
+  holdableObject: {fileID: 2265741913264165098, guid: cd428b386a1b7d84fbd2d04763c8dad8,
+    type: 3}

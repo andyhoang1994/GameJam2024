@@ -28,7 +28,6 @@ public class DestinationWaypoint : MonoBehaviour
     {
         if (collider.gameObject.TryGetComponent(out Employee employee))
         {
-            Debug.Log("On trigger enter");
             this.OnEnterWaypointRange?.Invoke(this, new OnEnterWaypointRangeArgs { waypoint = this.Waypoint });
         }
     }
