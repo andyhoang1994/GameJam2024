@@ -10507,7 +10507,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8733226836896956544, guid: 163ce9f4338dc4e54b24a24d60c8f7f8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2017595578}
   m_SourcePrefab: {fileID: 100100000, guid: 163ce9f4338dc4e54b24a24d60c8f7f8, type: 3}
 --- !u!1 &866234449
 GameObject:
@@ -11723,7 +11727,7 @@ GameObject:
   - component: {fileID: 931814283}
   - component: {fileID: 931814284}
   m_Layer: 2
-  m_Name: Waypoint 4
+  m_Name: Destination Waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11738,7 +11742,7 @@ Transform:
   m_GameObject: {fileID: 931814280}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.93, y: -0.5, z: -2.58}
+  m_LocalPosition: {x: 8.96, y: -0.5, z: -4.84}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -11776,7 +11780,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &931814284
 Rigidbody:
@@ -24117,6 +24121,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 171572436}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2017595576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8733226836896956544, guid: 163ce9f4338dc4e54b24a24d60c8f7f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 866037812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2017595578
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017595576}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.03, y: 0.04, z: 0.08}
+  m_Center: {x: 0, y: 0.02, z: -0.01}
 --- !u!4 &2019290822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9159482987703368149, guid: 93e5758c31eb84640a779d287a41e2cc,
