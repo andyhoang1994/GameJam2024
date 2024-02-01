@@ -798,6 +798,7 @@ GameObject:
   - component: {fileID: 45463156}
   - component: {fileID: 45463158}
   - component: {fileID: 45463157}
+  - component: {fileID: 45463159}
   m_Layer: 5
   m_Name: ProgressOverlay
   m_TagString: Untagged
@@ -845,13 +846,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: a2f9980725e21bd439fef6aa11c3d0d8, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &45463158
@@ -862,6 +863,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45463155}
   m_CullTransparentMesh: 1
+--- !u!114 &45463159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45463155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5931f5bf58b2bbf4988fc44a5f739e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &47847872
 GameObject:
   m_ObjectHideFlags: 0
@@ -21821,6 +21834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 1034766353}
   progressBar: {fileID: 1491303159}
+  progressOverlay: {fileID: 45463157}
 --- !u!1 &1811732551
 GameObject:
   m_ObjectHideFlags: 0
