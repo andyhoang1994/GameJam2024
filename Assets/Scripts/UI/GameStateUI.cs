@@ -11,8 +11,14 @@ public class GameStateUI : MonoBehaviour
     [SerializeField]
     private Slider progressBar;
 
-    private Slider ProgressBar { get { return progressBar; } }
-    private Transform Hand { get { return hand; } }
+    [SerializeField]
+    private Image progressOverlay;
+
+    private Slider ProgressBar { get { return this.progressBar; } set { this.progressBar = value; } }
+
+    private Transform Hand { get { return this.hand; } set { this.hand = value; } }
+
+    private Image ProgressOverlay { get { return this.progressOverlay; } set { this.progressOverlay = value; } }
 
     private void UpdateTimer()
 
@@ -20,10 +26,13 @@ public class GameStateUI : MonoBehaviour
         float totalTime = Timer.Instance.TotalTime;
         float timeRemaining = Timer.Instance.TimeRemaining;
 
-        float angle = DEGREES_IN_CIRCLE * (timeRemaining / totalTime) - DEGREES_IN_CIRCLE;
+        float timePercentage = timeRemaining / totalTime;
+        float angle = DEGREES_IN_CIRCLE * timePercentage - DEGREES_IN_CIRCLE;
 
         Vector3 handPosition = this.Hand.position;
         this.Hand.SetPositionAndRotation(handPosition, Quaternion.AngleAxis(angle, Vector3.forward));
+
+        this.ProgressOverlay.fillAmount = 1 - timePercentage;
     }
 
     private void UpdateMoney()

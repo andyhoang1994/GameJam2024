@@ -134,18 +134,17 @@ public class Employee : MonoBehaviour
     }
     private void UpdateMood()
     {
-        if (this.Mood > 100)
+        switch (this.Mood)
         {
-            this.Mood = 100;
-        }
-
-        if (this.Mood < 0)
-        {
-            this.Mood = 0;
-        }
-        else
-        {
-            this.Mood -= Time.deltaTime * this.moodDecreaseRate;
+            case > 100:
+                this.Mood = 100;
+                break;
+            case < 0:
+                this.Mood = 0;
+                break;
+            case not 100 and not 0:
+                this.Mood -= Time.deltaTime * this.moodDecreaseRate;
+                break;
         }
     }
 
