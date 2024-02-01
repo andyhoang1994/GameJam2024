@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class GameStateUI : MonoBehaviour
 {
     const int DEGREES_IN_CIRCLE = 360;
+    public static GameStateUI Instance { get; private set; }
 
     [SerializeField]
     private Transform hand;
@@ -14,11 +15,20 @@ public class GameStateUI : MonoBehaviour
     [SerializeField]
     private Image progressOverlay;
 
+    [SerializeField]
+    private Transform heldObjectPosition;
+
+    private Transform heldObject;
+
     private Slider ProgressBar { get { return this.progressBar; } set { this.progressBar = value; } }
 
     private Transform Hand { get { return this.hand; } set { this.hand = value; } }
 
     private Image ProgressOverlay { get { return this.progressOverlay; } set { this.progressOverlay = value; } }
+
+    private Transform HeldObject { get { return this.heldObject; } set { this.heldObject = value; } }
+
+    private Transform HeldObjectPosition { get { return this.heldObjectPosition; } set { this.heldObject = value; } }
 
     private void UpdateTimer()
 
@@ -39,6 +49,33 @@ public class GameStateUI : MonoBehaviour
     {
         float currentMoney = GameState.Instance.CurrentMoney;
         this.ProgressBar.value = currentMoney;
+    }
+
+    public void UpdateHeldItem(Transform item)
+    {
+        if (item == null)
+        {
+            Destroy(this.HeldObject.gameObject);
+            this.HeldObject = null;
+
+            return;
+        }
+
+        item.TryGetComponent(out HoldableObject holdableObject);
+
+        Transform holdableObjectTransform = Instantiate(holdableObject.HoldableObjectSO.Sprite, this.HeldObjectPosition);
+
+        this.HeldObject = holdableObjectTransform;
+    }
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple instances");
+            Debug.Break();
+        }
+        Instance = this;
     }
 
     private void Start()

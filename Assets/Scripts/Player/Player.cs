@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float interactDistance = 4f;
 
+    private Transform heldObject;
+
     public bool IsWalking { get; private set; }
 
     public Vector3 LastInteractDirection { get; private set; }
@@ -42,7 +44,15 @@ public class Player : MonoBehaviour
 
     public Employee NearbyEmployee { get; private set; }
 
-    public Transform HeldObject { get; set; }
+    public Transform HeldObject
+    {
+        get { return this.heldObject; }
+        set
+        {
+            this.heldObject = value;
+            GameStateUI.Instance.UpdateHeldItem(value);
+        }
+    }
 
     public event EventHandler<OnEnterInteractRangeArgs> OnEnterInteractRange;
 

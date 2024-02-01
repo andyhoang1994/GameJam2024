@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Pizza
   m_EditorClassIdentifier: 
   prefab: {fileID: 8144375267178901739, guid: cd428b386a1b7d84fbd2d04763c8dad8, type: 3}
-  sprite: {fileID: 21300000, guid: 736dc844a177bb04ab8a8c2de2bd30f2, type: 3}
+  sprite: {fileID: 1166818378611403309, guid: 7d792afd7efb5114aa6ae36b4b453b72, type: 3}
   objectName: Pizza

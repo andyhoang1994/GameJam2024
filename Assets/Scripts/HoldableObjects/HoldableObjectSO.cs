@@ -7,14 +7,14 @@ public class HoldableObjectSO : ScriptableObject
     private Transform prefab;
 
     [SerializeField]
-    private Sprite sprite;
+    private Transform sprite;
 
     [SerializeField]
     private string objectName;
 
     public Transform Prefab { get { return this.prefab; } }
 
-    public Sprite Sprite { get { return this.sprite; } }
+    public Transform Sprite { get { return this.sprite; } }
 
     public string ObjectName { get { return this.objectName; } }
 }
