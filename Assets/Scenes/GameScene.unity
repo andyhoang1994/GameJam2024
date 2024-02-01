@@ -21911,7 +21911,7 @@ MonoBehaviour:
   hand: {fileID: 1034766353}
   progressBar: {fileID: 1491303159}
   progressOverlay: {fileID: 45463157}
-  heldObjectPosition: {fileID: 0}
+  heldObjectPosition: {fileID: 1852166564}
 --- !u!1 &1811732551
 GameObject:
   m_ObjectHideFlags: 0
