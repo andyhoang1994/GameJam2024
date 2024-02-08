@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         this.HandleMovement();
         this.HandleInteractions();

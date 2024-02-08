@@ -208,7 +208,7 @@ public class Employee : MonoBehaviour
         this.WayPointIndex = 0;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         this.HandleMovement();
         this.HandleEnterWaypoint();
