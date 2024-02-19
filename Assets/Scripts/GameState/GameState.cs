@@ -2,13 +2,10 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-    private SceneLoader sceneLoader = new SceneLoader();
     public static GameState Instance { get; private set; }
 
     [SerializeField]
     private int level = 1;
-
-    private SceneLoader SceneLoader { get { return this.sceneLoader; } }
 
     public int CurrentMoney { get; set; } = 0;
 
@@ -20,7 +17,7 @@ public class GameState : MonoBehaviour
 
     private void GameOver()
     {
-        this.SceneLoader.LoadGameOverScene();
+        SceneLoader.Instance.LoadGameOverScene();
     }
 
     private void InitializeNextLevel()
@@ -35,6 +32,7 @@ public class GameState : MonoBehaviour
     {
         Instance = this;
     }
+
     public void AddMoney(int money)
     {
         this.CurrentMoney += money;

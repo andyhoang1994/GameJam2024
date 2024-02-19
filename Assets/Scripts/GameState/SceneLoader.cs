@@ -9,6 +9,13 @@ public enum Scene
 }
 public class SceneLoader : MonoBehaviour
 {
+    public static SceneLoader Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public void LoadGameScene()
     {
         SceneManager.LoadScene(Scene.GameScene.ToString());
