@@ -37,7 +37,7 @@ public class Timer : MonoBehaviour
                 this.TimeRemaining = 0;
                 this.TimerIsRunning = false;
 
-                GameState.Instance.GameOver();
+                GameState.Instance.EndRound();
             }
         }
     }

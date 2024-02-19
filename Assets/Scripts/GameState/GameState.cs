@@ -18,6 +18,11 @@ public class GameState : MonoBehaviour
 
     public int Level { get { return level; } set { level = value; } }
 
+    private void GameOver()
+    {
+        this.SceneLoader.LoadGameOverScene();
+    }
+
     private void InitializeNextLevel()
     {
         this.Level += 1;
@@ -35,8 +40,26 @@ public class GameState : MonoBehaviour
         this.CurrentMoney += money;
     }
 
-    public void GameOver()
+    public void Pause()
     {
-        this.SceneLoader.LoadGameOverScene();
+        Time.timeScale = 0;
+    }
+
+    public void Update()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void EndRound()
+    {
+        if (RoundMoney < GoalMoney)
+        {
+            this.GameOver();
+        }
+        else
+        {
+            this.InitializeNextLevel();
+            GameStateUI.Instance.OpenStore();
+        }
     }
 }

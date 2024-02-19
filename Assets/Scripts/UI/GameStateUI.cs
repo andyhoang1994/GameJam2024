@@ -18,6 +18,9 @@ public class GameStateUI : MonoBehaviour
     [SerializeField]
     private Transform heldObjectPosition;
 
+    [SerializeField]
+    private Transform store;
+
     private Transform heldObject;
 
     private Slider ProgressBar { get { return this.progressBar; } set { this.progressBar = value; } }
@@ -51,23 +54,6 @@ public class GameStateUI : MonoBehaviour
         this.ProgressBar.value = currentMoney;
     }
 
-    public void UpdateHeldItem(Transform item)
-    {
-        if (item == null)
-        {
-            Destroy(this.HeldObject.gameObject);
-            this.HeldObject = null;
-
-            return;
-        }
-
-        item.TryGetComponent(out HoldableObject holdableObject);
-
-        Transform holdableObjectTransform = Instantiate(holdableObject.HoldableObjectSO.Sprite, this.HeldObjectPosition);
-
-        this.HeldObject = holdableObjectTransform;
-    }
-
     private void Awake()
     {
         if (Instance != null)
@@ -89,5 +75,32 @@ public class GameStateUI : MonoBehaviour
     {
         this.UpdateTimer();
         this.UpdateMoney();
+    }
+
+    public void UpdateHeldItem(Transform item)
+    {
+        if (item == null)
+        {
+            Destroy(this.HeldObject.gameObject);
+            this.HeldObject = null;
+
+            return;
+        }
+
+        item.TryGetComponent(out HoldableObject holdableObject);
+
+        Transform holdableObjectTransform = Instantiate(holdableObject.HoldableObjectSO.Sprite, this.HeldObjectPosition);
+
+        this.HeldObject = holdableObjectTransform;
+    }
+
+    public void OpenStore()
+    {
+        this.store.gameObject.SetActive(true);
+    }
+
+    public void CloseStore()
+    {
+        this.store.gameObject.SetActive(false);
     }
 }
