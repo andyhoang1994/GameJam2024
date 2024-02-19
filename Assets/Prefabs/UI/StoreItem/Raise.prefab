@@ -8,6 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 648173536760716311, guid: 4aa3b42cffae92241b100efc67b53331,
+        type: 3}
+      propertyPath: cost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 648173536760716311, guid: 4aa3b42cffae92241b100efc67b53331,
+        type: 3}
+      propertyPath: title
+      value: Raise
+      objectReference: {fileID: 0}
     - target: {fileID: 2222576244409430876, guid: 4aa3b42cffae92241b100efc67b53331,
         type: 3}
       propertyPath: m_Name
